@@ -1,0 +1,79 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120%;
+    background-image: url("code/images/de_inhoud.png");
+}
+
+h1, h2, h3{
+    margin: 0;
+}
+.redText
+{
+    color: red;
+}
+
+#container {
+    width: 1350px;
+    background-image: url("code/images/de_inhoud.png");
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-color:  goldenrod;
+}
+
+#header {
+    background-image: url("code/images/header.png");
+    float: left;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+}
+
+#content {
+    background-color: chartreuse;
+    padding: 10 px;
+    margin-right: auto;
+}
+#knoppen{
+    background-image: url("code/images/form.png");
+    width: 150px;
+    float: left;
+    clear: both;
+    padding: 10px;
+    margin: 10px;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #bed58f;   
+}
+
+#canvas{
+    background-image: url("code/images/bigLogo.jpg");
+    border: 5px solid goldenrod;
+    width: 600;
+    margin: 10px;
+    height: 600;
+   float: left;
+   padding: 10px;
+}
+
+#main {
+    background-image: url("code/images/form.png");
+    width: 486;
+    float: right;
+    padding: 10px;
+    margin-right: auto;
+    border-style: none;
+    color: black;
+    margin: 10px 10px 10px 0px;
+}
+
+#footer {
+    clear: both;
+    padding: 10px;
+    background-image: url("code/images/18.png");
+    color: white;
+    text-align: right;
+}

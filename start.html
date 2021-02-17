@@ -1,0 +1,86 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> NOMADOME</title>
+        <link rel="stylesheet" type="text/css" href="opmaak.css" /
+    </head>
+    <body onload="doIt()">
+        <div id='container'>
+            <div id='header'>
+                <img border="0" alt="?" src="code/images/header.png" width="1350" height="55"></th>           
+            </div>
+            <div id=content>
+                <div id="element"></div>
+                <div id='knoppen'>
+                    <div id='model'>
+                        <div id="my3d">
+                            <button id="animation" onclick="toggleAnimation()">bewegend</button>
+                            <button onclick="doe('speed',1)">sneller</button>
+                            <button onclick="doe('speed',0)">langzamer</button>  
+                            <p>  </p>
+                            <button onclick="doT()">top</button>
+                            <button onclick="doF()">front</button>
+                            <p>  </p>
+                            <button onclick="doNL()">cam left</button>
+                            <button onclick="doNR()">cam right</button>
+                            <button onclick="doNB()">cam down</button>
+                            <button onclick="doNO()">cam up</button>
+                            <p>  </p>
+                            <button onclick="doPU()">pan up</button>
+                            <button onclick="doPD()">pan down</button>
+                            <button onclick="doPL()">pan left</button>
+                            <button onclick="doPR()">pan right</button>
+                            <p>  </p>
+                            <button onclick="doZI()">zoom in</button>
+                            <button onclick="doZO()">zoom out</button>
+                            <p>  </p>
+                            <button  id="debug" onclick="toggleDebug()">debug</button>
+                            <p>  </p>
+                            <button onclick="doTm()">doTest</button>
+                            <button onclick="showV()">VIEW</button>
+                        </div>
+                    </div>
+                </div>
+                <canvas id='canvas'></canvas>
+                <div id='main'>
+                    <h2>Inleiding</h2>
+                    <div contenteditable="true">
+                        This text can be edited by the user.
+                    </div>
+                    <p>
+                        Ik wil je uitleggen wat je op deze site kunt doen. Ik doe dat aan de hand van een voorbeeld. Je maakt stappen door de inleiding door op de rode woorden te klikken. Het resultaat zie je in het venster met het vraagteken.
+                        We beginnen met het modelleren van een regelmatig twintigvlak. 
+                        <a id="intro" onclick="run(2)"style="cursor: pointer; cursor: hand;"><span class="redText">Dat doe je door op deze rode text te klikken!</span></a> Ik wil je uitleggen wat je op deze site kunt doen. Ik doe dat aan de hand van een voorbeeld. Je maakt stappen door de inleiding door op de rode woorden te klikken. Het resultaat zie je in het venster met het vraagteken.
+                        We gaan naar de <a href="pl.html"> volgende pagina </a>
+                    </p>
+    
+                </div>
+    
+            </div>
+            <div id='footer'>
+                <button onclick="">Contact</button>
+    
+                &copy; 2020 Anthony Bijnen
+            </div>
+        </div>
+        <script>            
+            function doIt(){
+                setToggles();
+                doTestCubeInit();
+                doSnijTest();
+            }
+            
+            function doTm(){
+                fC('3d','snij');  
+                lC(); 
+            }
+
+        </script>
+        <script src='code/Init.js'></script>
+        <script src='code/UIF.js'></script>
+        <script src='code/visualisatie.js'></script>
+        <script src='code/errorTest.js'></script>
+        <script src='code/nomadome.js'></script>
+        <script src='code/fun.js'></script>    </body>
+</html>

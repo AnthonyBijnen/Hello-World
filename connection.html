@@ -1,0 +1,166 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>a strut with the connections</title>
+        <link rel="stylesheet" type="text/css" href="opmaak.css" /
+    </head>
+    <body>
+        
+        <div id='container'>
+            <div id='header'>
+                <img border="0" alt="?" src='code/images/header.png' width="1350" height="55"></th>           
+            </div>
+            <div id=content>
+                <div id='knoppen'>
+                    <div id='model'>
+                        <div id="my3d">
+                            <button id="animation" onclick="toggleAnimation()">bewegend</button>
+                            <button onclick="doe('speed',1)">sneller</button>
+                            <button onclick="doe('speed',0)">langzamer</button>  
+                            <p>  </p>
+                            <button onclick="doT()">top</button>
+                            <button onclick="doF()">front</button>
+                            <p>  </p>
+                            <button onclick="doNL()">cam left</button>
+                            <button onclick="doNR()">cam right</button>
+                            <button onclick="doNB()">cam down</button>
+                            <button onclick="doNO()">cam up</button>
+                            <p>  </p>
+                            <button onclick="doPU()">pan up</button>
+                            <button onclick="doPD()">pan down</button>
+                            <button onclick="doPL()">pan left</button>
+                            <button onclick="doPR()">pan right</button>
+                            <p>  </p>
+                            <button onclick="doZI()">zoom in</button>
+                            <button onclick="doZO()">zoom out</button>
+                            <p>  </p>
+                            <button  id="debug" onclick="toggleDebug()">debug</button>
+                            <p>  </p>
+                            <button onclick="showV()">VIEW</button>
+                        </div>
+                    </div>
+                </div>
+                <canvas id='canvas'>
+                    <img id="deWat" border="0" alt="?" src='code/images/deWat.jpg' ></th>                            
+                    <img id="hands" border="0" alt="?" src='code/images/hands.png' ></th>                            
+                    <img id="hands2" border="0" alt="?" src='code/images/hands2.png' ></th>                            
+                </canvas>
+                <div id='main'>
+                    <div id="myDIV">
+                    <h2>de verbinding</h2>
+                    <p>
+                        We kunnen ons baseren op het viervlak, het achtvlak, het zesvlak, het twaalfvlak en het twintigvlak. Dezen kunnen we laten zien als vlakkenmodel of als draadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen
+                    </p>
+                    </div>
+
+                    <!-- <button onclick="doJob(1)">de verbindingen</button> <button onclick="doJob(2)">de handen</button>    <button onclick="doJob(3)">de handen samen</button>     <button onclick="doJob(4)">verdraai de staven</button>   <button onclick="doJob(5)">detailleer</button><button onclick="doJob(6)">6</button> -->
+                    <button onclick="doJob(1)">1</button> <button onclick="doJob(2)">2</button>    <button onclick="doJob(3)">3</button>     <button onclick="doJob(4)">4</button>   
+                    <p> Gaan we verder naar de <a href="pl.html"> vorige pagina </a> met het uitwerken van de verbinding?                    </p>
+                    <!-- <p>Image to use:</p>
+                    <img id="scream" src="code/images/27.jpg" alt="The Scream"> -->
+
+                </div>
+            </div>
+            <div id='footer'>
+                <button onclick="">Contact</button>
+    
+                &copy; 2020 Anthony Bijnen
+            </div>
+        </div>
+        <script>
+            window.onload = function doIt(){
+                p = getV('plato');
+                if (!p) p = 20;
+                MODEL = kiesHetModel(p);
+                setToggles();
+                cleanCanvas();
+                fC('pict','deWat',[200,300]);
+                sC('tekst','ff wat anders',[100,200],'sSmall');
+                lC('tekst','De verbinding',[100,300],'sLarge');
+            }
+            
+            function doJob(num){
+                veeg = true;
+                if (num == 1){
+                    if (MODEL){//      2            3  4        5       6   7       8
+                               //      array        i  kleur    vulkl.  pen id      wvttk
+                        fC('pict','hands',[0,450]);
+                        lC('3d','lijn',MODEL.edges,'all','green',0,0);
+                    } else  error('connection: er is geen model');
+                } else if (num == 2){
+                    if (MODEL){
+                        turn(MODEL,[0,0,0]);
+                               //      array        i  kleur    vulkl.  pen id      wvttk                        
+                        fC('pict','hands2',[0,450]);
+                        lC('3d','lijn',MODEL.noma,  'all','green','',   0,0, 0);
+                    } else  error('connection: er is geen model');
+                } else if (num == 3){
+                    if (MODEL){
+                        initStrut();
+                               //      array        i  kleur    vulkl.  pen id      wvttk
+                        fC('pict','hands',[0,450]);
+                        sC('3d','lijn',MODEL.strut.edges,'all','green','',0,0,      0);
+                        lC('3d','lijn',MODEL.strut.edges, 0 , 'yellow','',0,0,      0);
+                    } else  error('connection: er is geen model');
+               } else if (num == 4){
+                    if (MODEL){
+                        if (MODEL.strut){
+                            turn(MODEL.strut,MODEL.strut.origin);
+                               //      array        i  kleur    vulkl.  pen id      wvttk
+                            fC('pict','hands2',[0,450]);
+                            sC('3d','lijn',MODEL.strut.noma,'all','green','',0,-1,0);
+                            sC('3d','lijn',MODEL.strut.noma,2,'DarkBlue','',1,0,0);
+                            sC('3d','lijn',MODEL.strut.noma,3,'DarkBlue','',1,0,0);
+                            sC('3d','lijn',MODEL.strut.noma,7,'DarkBlue','',1,0,0);
+                            sC('3d','lijn',MODEL.strut.noma,8,'DarkBlue','',1,0,0);
+                            lC('3d','lijn',MODEL.strut.noma, 0 , 'yellow','',0,0,0);
+                        } else  error('connection: MODEL.strut is er niet');
+                    } else  error('connection: er is geen model');
+                } else if (num == 5){
+                    if (MODEL){
+                        if (MODEL.strut){
+                            turn(MODEL.strut,MODEL.strut.origin);
+                               //      array        i  kleur    vulkl.  pen id      wvttk
+                            fC('pict','hands2',[0,450]);
+                            sC('3d','lijn',MODEL.strut.noma,4,'green','',0,0,0);
+                            lC('3d','lijn',MODEL.strut.noma, 0 , 'yellow','',0,0,0);
+                        } else  alert('connection: MODEL.strut is er niet');
+                    } else  alert('connection: er is geen model'); 
+                } else  error('connection: er is geen model');                
+            }
+
+        
+            function myFunction(num) {
+                var x = document.getElementById("myDIV");
+                if (num === 20) {
+                    txt = " <h2>Het regelmatig twintigvlak</h2>";
+                    txt = txt + ' \n ' + " <p>  twintig  twintig  twintig  twintig  twintig  twintig  twintig  twintig En hier kan dan compleet andere tekst worden ingeklopt. We kunnen ons baseren op het viervlak, het achtvlak, het zesvlak, het twaalfvlak en het twintigvlak. Dezen kunnen we laten zien als vlakkenmodel of als draadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen   </p>"
+                    x.innerHTML = txt;
+                } else if (num === TETRA){
+                    txt = " <h2>Het regelmatig viervlak</h2>";
+                    txt = txt + ' \n ' + " <p>  vier vier vier vier vier vier vier vier vier  En hier kan dan compleet andere tekst worden ingeklopt. We kunnen ons baseren op het viervlak, het achtvlak, het aadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen   </p>"
+                    x.innerHTML = txt;
+                } else if (num === CUBE){
+                    txt = " <h2>Het regelmatig zesvlak</h2>";
+                    txt = txt + ' \n ' + " <p> zes zes zes zes zes zes zes zes En hier kan dan compleet andere tekst worden ingeklopt. We kunnen ons baseren op het viervlak, het achtvlak, het aadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen   </p>"
+                    x.innerHTML = txt;
+                } else if (num === OKTO){
+                    txt = " <h2>Het regelmatig achtvlak</h2>";
+                    txt = txt + ' \n ' + " <p> acht acht acht acht acht acht acht acht acht acht acht acht acht acht En hier kan dan compleet andere tekst worden ingeklopt. We kunnen ons baseren op het viervlak, het achtvlak, het aadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen   </p>"
+                    x.innerHTML = txt;
+                } else if (num === DODEKA){
+                    txt = " <h2>Het regelmatig twaalfvlak</h2>";
+                    txt = txt + ' \n ' + " <p> twaalf twaalf twaalf twaalf twaalf twaalf twaalf twaalf twaalf twaalf En hier kan dan compleet andere tekst worden ingeklopt. We kunnen ons baseren op het viervlak, het achtvlak, het aadmodel. Om dat ik niet weet hoe ik dit moet laten zien in gewone tekst, doe ik het nu maar met knoppen   </p>"
+                    x.innerHTML = txt;
+                }
+            }
+        </script>
+        <script src='code/Init.js'></script>
+        <script src='code/UIF.js'></script>
+        <script src='code/visualisatie.js'></script>
+        <script src='code/nomadome.js'></script>
+        <script src='code/errorTest.js'></script>
+        <script src='code/fun.js'></script>
+     </body>
+</html>

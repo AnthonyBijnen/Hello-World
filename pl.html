@@ -1,0 +1,139 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>a platonic solid</title>
+        <link rel="stylesheet" type="text/css" href="opmaak.css" /
+    </head>
+    
+    <body onload="runPlato(6)">
+        <!-- <body onload="doIt()"> -->
+        
+        <div id='container'>
+            <div id='header'>
+                <img border="0" alt="?" src='code/images/header.png' width="1350" height="55"></th>           
+            </div>
+            <div id=content>
+                <div id='knoppen'>
+                    <div id='model'>
+                        <div id="my3d">
+                            <button id="animation" onclick="toggleAnimation()">bewegend</button>
+                            <button onclick="doS()">sneller</button>
+                            <button onclick="doL()">langzamer</button>  
+                            <p>  </p>
+                            <button onclick="doT()">top</button>
+                            <button onclick="doF()">front</button>
+                            <p>  </p>
+                            <button onclick="doNL()">cam left</button>
+                            <button onclick="doNR()">cam right</button>
+                            <button onclick="doNB()">cam down</button>
+                            <button onclick="doNO()">cam up</button>
+                            <p>  </p>
+                            <button onclick="doPU()">pan up</button>
+                            <button onclick="doPD()">pan down</button>
+                            <button onclick="doPL()">pan left</button>
+                            <button onclick="doPR()">pan right</button>
+                            <p>  </p>
+                            <button onclick="doZI()">zoom in</button>
+                            <button onclick="doZO()">zoom out</button>
+                            <p>  </p>
+                            <button  id="debug" onclick="toggleDebug()">debug</button>
+                            <p>  </p>
+                            <button onclick="showV()">VIEW</button>
+                        </div>
+                    </div>
+                </div>
+                <canvas id='canvas'>
+                    <p style="background-image: url('code/images/bigLogo.jpg');"></p>
+                </canvas>
+
+                <div id='main'>
+                    <div id="myDIV">
+                    <h2>de platonische veelvlakken</h2>
+                    <p>
+                        <p style="background-image: url('code/images/rietje20.png');"></p>
+
+                        We kunnen ons baseren op het viervlak, het achtvlak, het
+
+
+
+
+
+
+
+                        
+                    </p>
+                    </div>
+                    <p>
+                        <button onclick="runPlato(4)">4</button>    <button onclick="runPlato(6)">6</button>     <button onclick="runPlato(8)">8</button>   <button onclick="runPlato(12)">12</button><button onclick="runPlato(20)">20</button> 
+                    </p>
+                    <!-- <p>    <button onclick="fffreq(2)">*</button></p> -->
+                    <p>
+                        <button onclick="fffreq(1)">1</button>  <button onclick="fffreq(2)">2</button>     <button onclick="fffreq(3)">3</button>   <button onclick="fffreq(4)">4</button><button onclick="fffreq(10)">10</button> <button onclick="fffreq(20)">20</button>    
+                    </p>
+                    <p>
+                        <button onclick="setMaaiveld(1/2)">1/2</button>  <button onclick="setMaaiveld(2/6)">2/6</button>     <button onclick="setMaaiveld(1/4)">1/4</button>   <button onclick="setMaaiveld(0)">0</button><button onclick="setMaaiveld(-1/4)">-1/4</button> <button onclick="setMaaiveld(-2/6)">-2/6</button> <button onclick="setMaaiveld(-1/2)">-1/2</button>    <button onclick="setMaaiveld(-1)">-1</button>    
+                    </p>
+                    <p> Gaan we verder naar de <a href="connection.html"> volgende pagina </a> met het uitwerken van de verbinding?                    </p>
+
+                </div>
+     
+            </div>
+            <div id='footer'>
+                <button onclick="">Contact</button>
+    
+                &copy; 2020 Anthony Bijnen
+            </div>
+        </div>
+        <script>
+            function doIt(){
+                // setToggles();
+                ModelMoving =  false;
+                if (getV('plato') == undefined){
+                    plaatsTekst('Welcome here.....', [10,50], 'airSmall');
+                    plaatsTekst('Click on one of the five buttons on the right', [10,100], 'airSmall');
+                } else {
+                    model = kiesHetModel(getV('plato'));
+                    updatePagina();  
+                }
+            }
+
+            function updatePagina() {
+                            //      array        i  kleur    vulkl.  pen id      wvttk
+                if (MODEL){ //      2            3  4        5       6   7       8
+                    fC('3d','plato',MODEL.faces,'all','all', '' ,   0,  );
+                    lC('2d','cirkel',[300,300],0,'white',1,);
+                } else    error('pl: er is geen model');
+            }
+
+            function fffreq(num){
+                iSay('freq',        num);
+                if (num == 1) updatePagina();
+                else {
+                    doDome(false, getV('plato'),num);
+                    fC('3d','dome', 0,          0,      'white',    '' ,   1,  0, 'wire', -1);
+                    sC('3d','plato',MODEL.faces,'all',  'all',      '' ,   0,  );
+                    sC('3d','dome', 0,          0,      'white',    '' ,   1,  0, 'wire', 1);
+                    lC('2d','cirkel',[300,300],0,'white',1,);                } 
+                }
+
+            function setMaaiveld(num){
+                s = getV('straal');
+                v = Number(num)*s;
+                iSay('maaiveld',v);   
+                fffreq(getV('freq'));  
+            }
+
+            function runPlato(pl){         
+                model = kiesHetModel(pl);
+                fffreq(1);  
+            }
+        </script>
+        <script src='code/Init.js'></script>
+        <script src='code/UIF.js'></script>
+        <script src='code/visualisatie.js'></script>
+        <script src='code/nomadome.js'></script>
+        <script src='code/errorTest.js'></script>
+        <script src='code/fun.js'></script>
+     </body>
+</html>
